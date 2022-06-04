@@ -38,9 +38,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ],
                   isRepeatingAnimation: true,
-                  onTap: () {
-                    print("Tap Event");
-                  },
                 ),
               ],
             ),
