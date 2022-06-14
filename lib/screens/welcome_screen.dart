@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
+import 'package:flash_chat/components/common_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override

@@ -18,6 +18,10 @@ const kMessageContainerDecoration = BoxDecoration(
   ),
 );
 
+
+
+
+
 const colorizeColors = [
   Colors.lightGreen,
   Colors.blue,
