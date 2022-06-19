@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "856734761494",
+    "project_id": "turtletalk-be2bc",
+    "storage_bucket": "turtletalk-be2bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856734761494:android:13c2141a5514395beceb37",
+        "android_client_info": {
+          "package_name": "co.turtle.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856734761494-iap3sfuierb2ms9seaapu0ojtct2aubh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL2q_-nqZ5Qp6mT5LoLb_BYJ2Q4uQ1HNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856734761494-iap3sfuierb2ms9seaapu0ojtct2aubh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
