@@ -17,6 +17,8 @@ dependencies:
   firebase_auth: ^3.4.1
   cloud_firestore: ^3.2.1
 
+  modal_progress_hud: ^0.1.3
+
 
 
 
