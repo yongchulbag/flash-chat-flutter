@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -19,7 +20,13 @@ class _ChatScreenState extends State<ChatScreen> {
     // TODO: implement initState
     super.initState();
     getCurrentUser();
+    initialize();
   }
+
+  void initialize() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(); }
+
 
   void getCurrentUser() async {
     try {
@@ -68,18 +75,14 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   FlatButton(
-                    onPressed: () {
+                    onPressed: () async {
                       print(messageText);
                       print(loggedInUser.email);
 
-                      try {
-                        _firestore.collection('messages').add({
-                          'text': messageText,
-                          'sender': loggedInUser.email,
-                        });
-                      }
-                      catch(e)
-                      {print(e);}
+                      await _firestore.collection('messages').add({
+                        'sender': loggedInUser.email,
+                        'text': messageText,
+                      });
                     },
                     child: Text(
                       'Send',
