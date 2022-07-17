@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -20,12 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // TODO: implement initState
     super.initState();
     getCurrentUser();
-    initialize();
   }
-
-  void initialize() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(); }
 
 
   void getCurrentUser() async {
