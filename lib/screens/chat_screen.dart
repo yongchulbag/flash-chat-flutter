@@ -21,7 +21,6 @@ class _ChatScreenState extends State<ChatScreen> {
     getCurrentUser();
   }
 
-
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser;
@@ -42,6 +41,14 @@ class _ChatScreenState extends State<ChatScreen> {
   //     }
   // }
 
+  void getMessageStream() async {
+    await for (var snapshot in _firestore.collection('messages').snapshots()) {
+      for (var message in snapshot.docs) {
+        print(message.data());
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                getMessage();
+                getMessageStream();
                 // _auth.signOut();
                 // Navigator.pop(context);
               }),
