@@ -12,7 +12,7 @@ Future<void> main() async {
       apiKey: "AIzaSyCL2q_-nqZ5Qp6mT5LoLb_BYJ2Q4uQ1HNc",
       appId: "turtletalk-be2bc",
       messagingSenderId: "XXX",
-      projectId: "XXX",
+      projectId: "turtletalk-be2bc",
     ),
   );
   runApp(FlashChat());
