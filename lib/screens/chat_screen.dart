@@ -78,9 +78,8 @@ class _ChatScreenState extends State<ChatScreen> {
                     final messages = snapshot.data.docs;
                     List<Text> messageWidgets = [];
                     for (var message in messages) {
-                      var data = message.data() as Map;
-                      final messageText = (message.data as Map<String, dynamic>)['text'];
-                      final messageSender = (message.data as Map<String, dynamic>)['sender'];
+                      final messageText = (message.data() as Map<String, dynamic>)['text'];
+                      final messageSender = (message.data() as Map<String, dynamic>)['sender'];
                       final messageWidget =
                           Text('$messageText from $messageSender');
                       messageWidgets.add(messageWidget);
