@@ -74,20 +74,26 @@ class _ChatScreenState extends State<ChatScreen> {
             StreamBuilder<QuerySnapshot>(
                 stream: _firestore.collection('messages').snapshots(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.lightBlue,
+                      ),
+                    );
+                  }
                     final messages = snapshot.data.docs;
-                    List<Text> messageWidgets = [];
+                    List<BubbleMessage> messageWidgets = [];
                     for (var message in messages) {
                       final messageText = (message.data() as Map<String, dynamic>)['text'];
                       final messageSender = (message.data() as Map<String, dynamic>)['sender'];
-                      final messageWidget =
-                          Text('$messageText from $messageSender');
+                      final messageWidget = BubbleMessage(messageText: messageText, messageSender: messageSender);
                       messageWidgets.add(messageWidget);
                     }
-                    return Column(
-                      children: messageWidgets,
+                    return Expanded(
+                      child: ListView(
+                        children: messageWidgets,
+                      ),
                     );
-                  }
                 }),
             Container(
               decoration: kMessageContainerDecoration,
@@ -125,5 +131,32 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
     );
+  }
+}
+
+class BubbleMessage extends StatelessWidget {
+  BubbleMessage({this.messageText, this.messageSender});
+
+  final String messageText;
+  final String messageSender;
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Padding(
+        padding: EdgeInsets.all(10.0),
+        child: Material(
+          borderRadius: BorderRadius.circular(30),
+          elevation: 5,
+          color: Colors.green,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: Text('$messageText from $messageSender',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20),),
+          ),
+        ),
+      );
   }
 }
