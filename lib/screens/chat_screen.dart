@@ -63,7 +63,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 // Navigator.pop(context);
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: Text('=Turtle Chat='),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
@@ -145,17 +145,23 @@ class BubbleMessage extends StatelessWidget {
     return
       Padding(
         padding: EdgeInsets.all(10.0),
-        child: Material(
-          borderRadius: BorderRadius.circular(30),
-          elevation: 5,
-          color: Colors.green,
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: Text('$messageText from $messageSender',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20),),
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(messageSender, style: TextStyle(fontSize: 12, color: Colors.black54),),
+            Material(
+              borderRadius: BorderRadius.circular(30),
+              elevation: 5,
+              color: Colors.green,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: Text('$messageText',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20),),
+              ),
+            ),
+          ],
         ),
       );
   }
