@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _firestore = FirebaseFirestore.instance;
+User loggedInUser;
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -13,7 +14,6 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final bubbleTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
-  User loggedInUser;
   String messageText;
 
   @override
@@ -166,7 +166,11 @@ class BubbleMessage extends StatelessWidget {
             style: TextStyle(fontSize: 12, color: Colors.black54),
           ),
           Material(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ),
             elevation: 5,
             color: Colors.green,
             child: Padding(
