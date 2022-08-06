@@ -119,7 +119,7 @@ class StreamBuilderFunction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('messages').orderBy('timestamp',descending:true).snapshots(),
+        stream: _firestore.collection('messages').orderBy('timestamp',descending:true).snapshots(), // 여기서 타임스탬프 넣어주니 순서대로 정렬됨 ㄷㄷ
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
