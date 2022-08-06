@@ -135,8 +135,11 @@ class StreamBuilderFunction extends StatelessWidget {
                 (message.data() as Map<String, dynamic>)['text'];
             final messageSender =
                 (message.data() as Map<String, dynamic>)['sender'];
+
             final messageWidget = BubbleMessage(
-                messageText: messageText, messageSender: messageSender);
+                messageText: messageText, messageSender: messageSender, ismeornot: loggedInUser.email == messageSender,);
+
+
             messageWidgets.add(messageWidget);
           }
           return Expanded(
@@ -149,35 +152,41 @@ class StreamBuilderFunction extends StatelessWidget {
 }
 
 class BubbleMessage extends StatelessWidget {
-  BubbleMessage({this.messageText, this.messageSender});
+  BubbleMessage({this.messageText, this.messageSender, this.ismeornot});
 
   final String messageText;
   final String messageSender;
+  final bool ismeornot;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: ismeornot? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Text(
             messageSender,
             style: TextStyle(fontSize: 12, color: Colors.black54),
           ),
           Material(
-            borderRadius: BorderRadius.only(
+            borderRadius: ismeornot? BorderRadius.only(
               topLeft: Radius.circular(30.0),
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ) :
+            BorderRadius.only(
+              topRight: Radius.circular(30.0),
               bottomLeft: Radius.circular(30.0),
               bottomRight: Radius.circular(30.0),
             ),
             elevation: 5,
-            color: Colors.green,
+            color: ismeornot ? Colors.green : Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Text(
                 '$messageText',
-                style: TextStyle(color: Colors.white, fontSize: 20),
+                style: TextStyle(color: ismeornot ? Colors.white : Colors.black45, fontSize: 20),
               ),
             ),
           ),
