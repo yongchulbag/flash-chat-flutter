@@ -119,7 +119,7 @@ class StreamBuilderFunction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('messages').snapshots(),
+        stream: _firestore.collection('messages').orderBy('timestamp',descending:true).snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -144,6 +144,7 @@ class StreamBuilderFunction extends StatelessWidget {
           }
           return Expanded(
             child: ListView(
+              reverse: true,
               children: messageWidgets,
             ),
           );
